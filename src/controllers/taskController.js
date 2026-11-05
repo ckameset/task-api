@@ -5,7 +5,7 @@ export async function getTasks(req, res, next) {
     const { completed } = req.query;
     const completedFilter =
       completed === undefined ? undefined : completed === 'true';
-    const tasks = await taskService.getAllTasks();
+    const tasks = await taskService.getAllTasks(completedFilter);
     res.json(tasks);
   } catch (error) {
     next(error);
