@@ -18,6 +18,14 @@ paths:
       summary: List all tasks
       tags:
         - Tasks
+      parameters: 
+        - name: completed
+          in: query
+          required: false
+          description: Filter tasks by completed status. If not provided, all tasks are returned.
+          schema: 
+            type: boolean 
+          example: true
       responses:
         '200':
           description: OK
@@ -27,6 +35,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Task'
+        '400': 
+          description: Bad request due to invlaid completed query.
     post:
       summary: Create a new task
       tags:
